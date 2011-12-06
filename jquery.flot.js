@@ -1734,7 +1734,7 @@
                             x = plotOffset.left + axis.p2c(tick.v);
                             y = box.top + 2 * box.padding;
                             if(angle > Math.PI/2) {
-                                x -= line.width - 2* box.padding;
+                                x -= line.width;
                                 y += line.height - 2* box.padding;
                                 angle += Math.PI;
                             }
