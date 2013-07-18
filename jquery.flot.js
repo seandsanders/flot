@@ -977,7 +977,7 @@ Licensed under the MIT license.
                 f = axis.font;
 
             ctx.save();
-            ctx.font = f.style + " " + f.variant + " " + f.weight + " " + f.size + "px '" + f.family + "'";
+            ctx.font = f.style + " " + f.variant + " " + f.weight + " " + f.size + "px " + f.family;
 
             for (var i = 0; i < ticks.length; ++i) {
                 var t = ticks[i];
@@ -1194,6 +1194,13 @@ Licensed under the MIT license.
                     weight: placeholder.css("font-weight"),
                     family: placeholder.css("font-family")
                 };
+
+                //Fix up font-family to look like ctx expects it to
+                var fonts = fontDefaults.family.split(',');
+                for (i = 0; i < fonts.length; i++) {
+                  fonts[i] = "'" + fonts[i].trim() + "'";
+                }
+                fontDefaults.family = fonts.join(', ');
 
                 var allocatedAxes = $.grep(axes, function (axis) { return axis.reserveSpace; });
 
